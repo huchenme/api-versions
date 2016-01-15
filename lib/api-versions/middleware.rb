@@ -5,7 +5,7 @@ module ApiVersions
     end
 
     def call(env)
-      if env['REQUEST_PATH'].start_with?("/api")
+      if env['PATH_INFO'].start_with?("/api")
         accept_string = env['HTTP_ACCEPT'] || ""
         accepts = accept_string.split(',')
         accepts.push("application/vnd.#{ApiVersions::VersionCheck.vendor_string}+json") unless accept_string.include?('application/vnd.')
